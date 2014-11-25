@@ -2,25 +2,41 @@
 /**
  * Sastrawi Span (https://github.com/sastrawi/string-span)
  *
- * @link      http://github.com/sastrawi/sentence-detector for the canonical source repository
- * @license   https://github.com/sastrawi/sentence-detector/blob/master/LICENSE The MIT License (MIT)
+ * @link      http://github.com/sastrawi/string-span for the canonical source repository
+ * @license   https://github.com/sastrawi/string-span/blob/master/LICENSE The MIT License (MIT)
  */
 
 namespace Sastrawi\String\Span;
 
 /**
- * Text span model
+ * String span implementation
  *
  * @author Andy Librian
  */
 class Span implements SpanInterface
 {
+    /**
+     * @var int
+     */
     private $start = 0;
 
+    /**
+     * @var int
+     */
     private $end = 0;
 
+    /**
+     * @var string
+     */
     private $type;
 
+    /**
+     * Constructor
+     *
+     * @param int $start
+     * @param int $end
+     * @param string|null $type
+     */
     public function __construct($start, $end, $type = null)
     {
         if (!is_int($start) || $start < 0) {
@@ -43,9 +59,7 @@ class Span implements SpanInterface
     }
 
     /**
-     * Get the start position.
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function getStart()
     {
@@ -53,9 +67,7 @@ class Span implements SpanInterface
     }
 
     /**
-     * Get the end position.
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function getEnd()
     {
@@ -63,9 +75,7 @@ class Span implements SpanInterface
     }
 
     /**
-     * Get type of the span.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getType()
     {
@@ -73,9 +83,7 @@ class Span implements SpanInterface
     }
 
     /**
-     * Get the span length
-     *
-     * @return int
+     * {@inheritdoc}
      */
     public function getLength()
     {
@@ -83,31 +91,40 @@ class Span implements SpanInterface
     }
 
     /**
-     * Get covered text by this span.
-     *
-     * @param  string $text The text
-     * @return string
+     * {@inheritdoc}
      */
     public function getCoveredText($text)
     {
         return substr($text, $this->start, $this->getLength());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function contains(SpanInterface $span)
     {
         return $this->start <= $span->getStart() && $span->getEnd() <= $this->end;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function containsIndex($index)
     {
         return $this->start <= $index && $index < $this->end;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function startsWith(SpanInterface $span)
     {
         return $this->getStart() == $span->getStart() && $this->contains($span);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function intersects(SpanInterface $span)
     {
         $sstart = $span->getStart();
@@ -118,6 +135,9 @@ class Span implements SpanInterface
             $sstart <= $this->getStart() && $this->getStart() < $span->getEnd();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function crosses(Span $span)
     {
         $sstart = $span->getStart();
@@ -128,6 +148,9 @@ class Span implements SpanInterface
            $sstart <= $this->getStart() && $this->getStart() < $span->getEnd());
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function __toString()
     {
         $string = '['.$this->getStart().'..'.$this->getEnd().')';
