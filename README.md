@@ -9,7 +9,7 @@ Sastrawi String Span adalah library span yang digunakan oleh library NLP (Natura
 Cara Install
 -------------
 
-Sastrawi Sentence Detector dapat diinstall dengan [Composer](https://getcomposer.org).
+Sastrawi String Span dapat diinstall dengan [Composer](https://getcomposer.org).
 
 ```bash
 php composer.phar require sastrawi/string-span:~1
@@ -18,4 +18,4 @@ php composer.phar require sastrawi/string-span:~1
 Lisensi
 --------
 
-Sastrawi Sentence Detector dirilis di bawah lisensi MIT License (MIT).
+Sastrawi String Span dirilis di bawah lisensi MIT License (MIT).
