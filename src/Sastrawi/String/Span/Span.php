@@ -13,7 +13,7 @@ namespace Sastrawi\String\Span;
  *
  * @author Andy Librian
  */
-class Span
+class Span implements SpanInterface
 {
     private $start = 0;
 
@@ -91,5 +91,51 @@ class Span
     public function getCoveredText($text)
     {
         return substr($text, $this->start, $this->getLength());
+    }
+
+    public function contains(SpanInterface $span)
+    {
+        return $this->start <= $span->getStart() && $span->getEnd() <= $this->end;
+    }
+
+    public function containsIndex($index)
+    {
+        return $this->start <= $index && $index < $this->end;
+    }
+
+    public function startsWith(SpanInterface $span)
+    {
+        return $this->getStart() == $span->getStart() && $this->contains($span);
+    }
+
+    public function intersects(SpanInterface $span)
+    {
+        $sstart = $span->getStart();
+
+        //either $span's start is in this or this' start is in $span
+        return $this->contains($span) || $span->contains($this) ||
+            $this->getStart() <= $sstart && $sstart < $this->getEnd() ||
+            $sstart <= $this->getStart() && $this->getStart() < $span->getEnd();
+    }
+
+    public function crosses(Span $span)
+    {
+        $sstart = $span->getStart();
+
+        //either $span's start is in this or this' start is in $span
+        return !$this->contains($span) && !$span->contains($this) &&
+           ($this->getStart() <= $sstart && $sstart < $this->getEnd() ||
+           $sstart <= $this->getStart() && $this->getStart() < $span->getEnd());
+    }
+
+    public function __toString()
+    {
+        $string = '['.$this->getStart().'..'.$this->getEnd().')';
+
+        if ($this->getType() !== null) {
+            $string .= ' '.$this->getType();
+        }
+
+        return $string;
     }
 }

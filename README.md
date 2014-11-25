@@ -1,7 +1,9 @@
 Sastrawi String Span
 ====================
+[![Build Status](https://travis-ci.org/sastrawi/string-span.svg?branch=master)](https://travis-ci.org/sastrawi/string-span) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/sastrawi/string-span/badges/quality-score.png?b=development)](https://scrutinizer-ci.com/g/sastrawi/string-span/?branch=development) [![Code Coverage](https://scrutinizer-ci.com/g/sastrawi/string-span/badges/coverage.png?b=development)](https://scrutinizer-ci.com/g/sastrawi/string-span/?branch=development)
 
-Sastrawi String Span adalah library span yang digunakan oleh library NLP (Natural Language Processing) Sastrawi lainnya.
+
+Sastrawi String Span adalah library span yang digunakan oleh library NLP (Natural Language Processing) Sastrawi lainnya. API terinspirasi oleh Apache NLP Span.
 
 
 Cara Install
