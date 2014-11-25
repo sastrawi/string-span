@@ -138,7 +138,7 @@ class Span implements SpanInterface
     /**
      * {@inheritdoc}
      */
-    public function crosses(Span $span)
+    public function crosses(SpanInterface $span)
     {
         $sstart = $span->getStart();
 
