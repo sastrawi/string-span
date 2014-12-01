@@ -30,6 +30,7 @@
         }
     },
     "license": "MIT",
+    "prefer-stable": true,
     "minimum-stability": "dev",
     "support": {
         "issues": "https://github.com/sastrawi/string-span/issues",
